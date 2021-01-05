@@ -1,4 +1,4 @@
-name: NanoPi R2S OpenWrt
+name: NanoPi R2S OpenWrt 18.06
 
 on:
   repository_dispatch:
