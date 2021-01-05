@@ -73,7 +73,7 @@ jobs:
         ${GITHUB_WORKSPACE}/scripts/upload_firmware.sh "FriendlyARM NanoPi R2S" "rockchip-armv8-friendlyarm_nanopi-r2s" "18.06" "5.4" "${{ secrets.TELEGRAM_BOT_TOKEN }}" || exit 0
         
   Cleanup-Old-Artifacts:
-    needs: [OpenWrt-18_06,OpenWrt-Snapshot]
+    needs: [OpenWrt-18_06]
     runs-on: ubuntu-18.04
     steps:
     - name: Cleanup Old Action Artifacts
