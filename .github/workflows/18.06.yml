@@ -66,11 +66,6 @@ jobs:
       with:
         name: openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
         path: /home/runner/openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
-    - name: Upload OpenWrt-18.06 Firmwares to Cloud
-      timeout-minutes: 30
-      run: |
-        cd "/home/runner"
-        ${GITHUB_WORKSPACE}/scripts/upload_firmware.sh "FriendlyARM NanoPi R2S" "rockchip-armv8-friendlyarm_nanopi-r2s" "18.06" "5.4" "${{ secrets.TELEGRAM_BOT_TOKEN }}" || exit 0
         
   Cleanup-Old-Artifacts:
     needs: [OpenWrt-18_06]
