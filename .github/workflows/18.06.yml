@@ -35,7 +35,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         patch -p1 < "${GITHUB_WORKSPACE}/patches/1806-modify_for_r2s.patch"
-        sed -i "s/kmod-fast-classifier-noload/kmod-fast-classifier/g" package/ctcgfw/luci-app-turboacc/Makefile
+        #sed -i "s/kmod-fast-classifier-noload/kmod-fast-classifier/g" package/ctcgfw/luci-app-turboacc/Makefile
     - name: Build OpenWrt-18.06
       run: |
         cd "/home/runner/openwrt"
