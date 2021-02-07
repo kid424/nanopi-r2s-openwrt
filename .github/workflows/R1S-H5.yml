@@ -40,32 +40,18 @@ jobs:
         cp -f "${GITHUB_WORKSPACE}/configs/R1S-H5-config.seed" ".config"
         make defconfig
         make -j$[$(nproc)+1]
-        #mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r1s-h5-ext4-sysupgrade.img.gz" "../openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-ext4-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r1s-h5-squashfs-sysupgrade.img.gz" "../openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-squashfs-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/sha256sums" "../openwrt-18.06-sha256sums"
+        mv -f "bin/targets/sunxi/cortexa53/openwrt-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz" "../openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz"
     - name: Rebuild OpenWrt-18.06 to Collect Error Log
       if: failure()
       run: |
         cd "/home/runner/openwrt"
         make -j1 V=s
-        #mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r1s-h5-ext4-sysupgrade.img.gz" "../openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-ext4-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r1s-h5-squashfs-sysupgrade.img.gz" "../openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-squashfs-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/sha256sums" "../openwrt-18.06-sha256sums"
-    - name: Upload OpenWrt-18.06 SHA256SUM Hash
-      uses: actions/upload-artifact@v2
-      with:
-        name: openwrt-18.06-sha256sums
-        path: /home/runner/openwrt-18.06-sha256sums
-        #- name: Upload OpenWrt-18.06 EXT4 Firmware
-        #uses: actions/upload-artifact@v2
-        #with:
-        #name: openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-ext4-sysupgrade.img.gz
-        #path: /home/runner/openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-ext4-sysupgrade.img.gz
+        mv -f "bin/targets/sunxi/cortexa53/openwrt-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz" "../openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz"
     - name: Upload OpenWrt-18.06 SquashFS Firmware
       uses: actions/upload-artifact@v2
       with:
-        name: openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-squashfs-sysupgrade.img.gz
-        path: /home/runner/openwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r1s-h5-squashfs-sysupgrade.img.gz
+        name: openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz
+        path: /home/runner/openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz
         
   Cleanup-Old-Artifacts:
     needs: [OpenWrt-18_06]
