@@ -41,33 +41,25 @@ jobs:
         cp -f "${GITHUB_WORKSPACE}/configs/snapshot-config.seed" ".config"
         make defconfig
         make -j$[$(nproc)+1]
-        mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz" "../openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz" "../openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/sha256sums" "../openwrt-snapshot-sha256sums"
+        mv -f "bin/targets/rockchip/armv8/immortalwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz" "../immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz"
+        mv -f "bin/targets/rockchip/armv8/sha256sums" "../immortalwrt-snapshot-sha256sums"
     - name: Rebuild OpenWrt-Snapshot to Collect Error Log
       if: failure()
       run: |
         cd /home/runner/openwrt
         make -j1 V=s
-        mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz" "../openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/openwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz" "../openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz"
-        mv -f "bin/targets/rockchip/armv8/sha256sums" "../openwrt-snapshot-sha256sums"
+        mv -f "bin/targets/rockchip/armv8/immortalwrt-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz" "../immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz"
+        mv -f "bin/targets/rockchip/armv8/sha256sums" "../immortalwrt-snapshot-sha256sums"
     - name: Upload OpenWrt-Snapshot SHA256SUM Hash
       uses: actions/upload-artifact@v2
       with:
         name: openwrt-snapshot-sha256sums
         path: /home/runner/openwrt-snapshot-sha256sums
-    - name: Upload OpenWrt-Snapshot EXT4 Firmware
-      uses: actions/upload-artifact@v2
-      with:
-        name: openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz
-        path: /home/runner/openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz
     - name: Upload OpenWrt-Snapshot SquashFS Firmware
       uses: actions/upload-artifact@v2
       with:
-        name: openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
-        path: /home/runner/openwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
-
+        name: immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
+        path: /home/runner/immortalwrt-snapshot-rockchip-armv8-friendlyarm_nanopi-r2s-squashfs-sysupgrade.img.gz
   Cleanup-Old-Artifacts:
     needs: [OpenWrt-Snapshot]
     runs-on: ubuntu-18.04

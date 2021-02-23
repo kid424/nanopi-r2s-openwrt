@@ -40,19 +40,18 @@ jobs:
         cp -f "${GITHUB_WORKSPACE}/configs/R1S-H5-config.seed" ".config"
         make defconfig
         make -j$[$(nproc)+1]
-        mv -f "bin/targets/sunxi/cortexa53/openwrt-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz" "../openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz"
+        mv -f "bin/targets/sunxi/cortexa53/immortalwrt-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz" "../immortalwrt-18.06-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz"
     - name: Rebuild OpenWrt-18.06 to Collect Error Log
       if: failure()
       run: |
         cd "/home/runner/openwrt"
         make -j1 V=s
-        mv -f "bin/targets/sunxi/cortexa53/openwrt-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz" "../openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz"
+        mv -f "bin/targets/sunxi/cortexa53/immortalwrt-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz" "../immortalwrt-18.06-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz"
     - name: Upload OpenWrt-18.06 SquashFS Firmware
       uses: actions/upload-artifact@v2
       with:
-        name: openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz
-        path: /home/runner/openwrt-sunxi-cortexa53--friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz
-        
+        name: immortalwrt-18.06-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz
+        path: /home/runner/immortalwrt-18.06-sunxi-cortexa53-friendlyarm_nanopi-r1s-h5-squashfs-sdcard.img.gz
   Cleanup-Old-Artifacts:
     needs: [OpenWrt-18_06]
     runs-on: ubuntu-18.04
