@@ -53,8 +53,8 @@ jobs:
     - name: Upload OpenWrt-18.06 SHA256SUM Hash
       uses: actions/upload-artifact@v2
       with:
-        name: openwrt-18.06-sha256sums
-        path: /home/runner/openwrt-18.06-sha256sums
+        name: immortalwrt-18.06-sha256sums
+        path: /home/runner/immortalwrt-18.06-sha256sums
     - name: Upload OpenWrt-18.06 SquashFS Firmware
       uses: actions/upload-artifact@v2
       with:
