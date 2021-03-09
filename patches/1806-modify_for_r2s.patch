@@ -11,18 +11,18 @@ index 530e711fa5..6e5054b04d 100644
    ifneq ($(findstring mips,$(ARCH)),)
      ifneq ($(findstring mips64,$(ARCH)),)
        CPU_TYPE ?= mips64
-@@ -209,10 +209,7 @@ ifeq ($(DUMP),1)
-   endif
-   ifeq ($(ARCH),aarch64)
-     CPU_TYPE ?= generic
--    ifneq ($(filter $(FEATURES),fpu),)
--      CPU_CFLAGS += -march=armv8-a+crypto
--    endif
--    CPU_CFLAGS_generic = -mcpu=generic
-+    CPU_CFLAGS_generic = -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53
-     CPU_CFLAGS_cortex-a53 = -mcpu=cortex-a53
-   endif
-   ifeq ($(ARCH),arc)
+#@@ -209,10 +209,7 @@ ifeq ($(DUMP),1)
+#   endif
+#   ifeq ($(ARCH),aarch64)
+#     CPU_TYPE ?= generic
+#-    ifneq ($(filter $(FEATURES),fpu),)
+#-      CPU_CFLAGS += -march=armv8-a+crypto
+#-    endif
+#-    CPU_CFLAGS_generic = -mcpu=generic
+#+    CPU_CFLAGS_generic = -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53
+#     CPU_CFLAGS_cortex-a53 = -mcpu=cortex-a53
+#   endif
+#   ifeq ($(ARCH),arc)
 diff --git a/package/ctcgfw/luci-app-turboacc/Makefile b/package/ctcgfw/luci-app-turboacc/Makefile
 index 7e07b87fee..a08cc4dbe3 100644
 --- a/package/ctcgfw/luci-app-turboacc/Makefile
